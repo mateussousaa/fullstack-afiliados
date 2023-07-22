@@ -1,9 +1,11 @@
-// src/components/FileUploader.tsx
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
 const FileUploaderWrapper = styled.div`
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: flex;
+  padding: 25px;
+  background-color: white;
   flex-direction: column;
   align-items: center;
   gap: 10px;
@@ -25,8 +27,8 @@ const ChooseFileButton = styled.label`
 
 const UploadButton = styled.label`
   padding: 10px 20px;
-  background-color: #4141a8;
-  color: white;
+  background-color: var(--color04);
+  color: black;
   border-radius: 5px;
   cursor: pointer;
   white-space: nowrap;
@@ -38,7 +40,7 @@ const SelectedFileName = styled.div`
 `;
 
 const DragDropArea = styled.div`
-  border: 2px dotted black;
+  border: 1px dashed black;
   border-radius: 5px;
   padding: 25px;
   width: 100%;
