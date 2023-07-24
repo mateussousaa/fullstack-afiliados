@@ -26,8 +26,6 @@ const Logo = styled.span`
   font-weight: 500;
 `
 
-const onFileUpload = () => {}
-
 function App() {
   return (
     <Section>
@@ -35,7 +33,7 @@ function App() {
         <Logo>Affiliate Transactions</Logo>
       </Navbar>
       <Container>
-        <FileUploader onFileUpload={onFileUpload} />
+        <FileUploader />
         <TransactionsTable />
       </Container>
     </Section>

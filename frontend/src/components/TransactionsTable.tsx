@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { transactions } from "../temp/mock";
+import { Transaction } from "../interfaces/Transaction";
+import { useAppContext } from "../hooks/useAppContext";
 
 const TransactionArea = styled.div`
-  padding: 16px 8px 0px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   overflow-y: auto;
   text-align: center;
@@ -37,22 +37,46 @@ const PriceArea = styled.div`
   text-align: center;
 `
 
+const PriceText = styled.p`
+  padding: 4px;
+  text-align: center;
+  margin: auto;
+  max-width: 160px;
+  background-color: var(--color05);
+  color: white;
+  border-radius: 4px;
+`
+
 const TransactionsTable: React.FC = () => {
+  const [transactions, setTransactions] = useState<Transaction[]>([])
   const [totalPrice, setTotalPrice] = useState<number>(0)
+  const { isLoading } = useAppContext();
+
   
   useEffect(() => {
-    const totalPrice = transactions.reduce((acc, t) => {
-      if(t.transactionType.signal === "+") return acc + t.value
-      
-      return acc - t.value
-    }, 0)
+    const fetchTransactions = async () => {
+      const response = await fetch("http://localhost:3000/");
+      const data = await response.json();
+      const { message: transactions } = data;
+      setTransactions(transactions);
 
-    const formattedTotalPrice = parseFloat(totalPrice.toFixed(2));
-    setTotalPrice(formattedTotalPrice);
-  }, [])
+      const totalPrice = transactions.reduce((acc: number, t: Transaction) => {
+        return t.type.nature === 'INPUT'
+          ? acc + Number(t.value)
+          : acc - Number(t.value)
+      }, 0)
+  
+      const formattedTotalPrice = parseFloat(totalPrice.toFixed(2));
+      setTotalPrice(formattedTotalPrice);
+    }
+    fetchTransactions()
+  }, [isLoading])
 
   return (
     <TransactionArea>
+      <PriceArea>
+        <PriceText>Total: <span>R$ {totalPrice}</span></PriceText>
+      </PriceArea>
       {transactions.length ? (
         <TransactionTable>
           <thead>
@@ -70,12 +94,12 @@ const TransactionsTable: React.FC = () => {
             {transactions.map((t) => (
               <tr key={t.id}>
                 <TransactionCell>{t.id}</TransactionCell>
-                <TransactionCell>{t.data.toISOString()}</TransactionCell>
+                <TransactionCell>{(new Date(t.date)).toISOString()}</TransactionCell>
                 <TransactionCell>{t.product}</TransactionCell>
-                <TransactionCell>{t.value}</TransactionCell>
+                <TransactionCell>R$ {t.value}</TransactionCell>
                 <TransactionCell>{t.seller}</TransactionCell>
-                <TransactionCell>{t.transactionType.description}</TransactionCell>
-                <TransactionCell>{t.transactionType.nature}</TransactionCell>
+                <TransactionCell>{t.type.description}</TransactionCell>
+                <TransactionCell>{t.type.nature}</TransactionCell>
               </tr>
             ))}
           </tbody>
@@ -83,9 +107,6 @@ const TransactionsTable: React.FC = () => {
       ) : (
         <NoTransactionSpan>No Transactions</NoTransactionSpan>
       )}
-      <PriceArea>
-        <p>Total: <span>R$ {totalPrice}</span></p>
-      </PriceArea>
     </TransactionArea>
   )
 }

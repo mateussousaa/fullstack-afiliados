@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import { useAppContext } from '../hooks/useAppContext';
 
 const FileUploaderWrapper = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -61,23 +62,14 @@ const UploadIcon = styled.img`
   max-width: 80px;
 `;
 
-interface FileUploaderProps {
-  onFileUpload: (file: File) => void;
-}
-
-const FileUploader: React.FC<FileUploaderProps> = ({ onFileUpload }) => {
+const FileUploader = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { setIsLoading } = useAppContext();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     setSelectedFile(file || null);
-  };
-
-  const handleUpload = () => {
-    if (selectedFile) {
-      onFileUpload(selectedFile);
-    }
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -92,6 +84,27 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileUpload }) => {
 
   const openFileDialog = () => {
     fileInputRef.current?.click();
+  };
+
+  const handleUpload = async () => {
+    if (selectedFile) {
+      setIsLoading(true);
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+  
+      const response = await fetch('http://localhost:3000/upload', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      const data = await response.json()
+      
+      if (data.error) {
+        return console.log('ERROR: ', data.error)
+      }
+      console.log()
+      setIsLoading(false);
+    }
   };
 
   return (
