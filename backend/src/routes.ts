@@ -1,9 +1,14 @@
-import { Router, Request, Response } from 'express'
+import { Router } from 'express'
+import { getTransactions, uploadTransactions } from './controllers/transactionController';
+import multer from 'multer';
+import { validateFile } from './middlewares/validateFile';
 
-const routes = Router();
+const upload = multer({ dest: 'uploads/'})
 
-routes.post('/upload', (req: Request, res: Response) => res.json('endpoint / POST'))
+const routes = Router()
 
-routes.get('/', (req: Request, res: Response) => res.json('endpoint / GET'))
+routes.get('/', getTransactions)
+
+routes.post('/upload', upload.single('file'), validateFile, uploadTransactions)
 
 export { routes }
