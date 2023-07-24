@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Transaction {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  product   String
+  value     Float
+  seller    String
+  typeId    Int
+  type      TransactionType @relation(fields: [typeId], references: [id])
+}
+
+model TransactionType {
+  id          Int      @id @default(autoincrement())
+  description String
+  nature      Nature
+  signal      Signal
+  Transaction Transaction[]
+}
+
+enum Nature {
+  INPUT
+  OUTPUT
+}
+
+enum Signal {
+  POSITIVE
+  NEGATIVE
+}
