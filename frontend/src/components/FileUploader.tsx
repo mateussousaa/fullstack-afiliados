@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useAppContext } from '../hooks/useAppContext';
+import { handleNotification } from '../utils/handleNotifications';
 
 const FileUploaderWrapper = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -100,11 +101,13 @@ const FileUploader = () => {
       const data = await response.json()
       
       if (data.error) {
-        return console.log('ERROR: ', data.error)
+        return handleNotification({ success: false, message: data.error })
       }
-      console.log()
+
       setIsLoading(false);
+      return handleNotification({ success: true, message: data.message })
     }
+    return handleNotification({ success: false, message: 'File is required' })
   };
 
   return (
