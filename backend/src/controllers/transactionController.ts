@@ -18,7 +18,7 @@ const uploadTransactions = async (req: Request, res: Response) => {
 const getTransactions = async (_req: Request, res: Response) => {
   try {
     const transactions = await transactionService.getTransactions()
-    return res.status(200).json(transactions);
+    return res.status(200).json({ message: transactions });
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch transactions' });
   }
