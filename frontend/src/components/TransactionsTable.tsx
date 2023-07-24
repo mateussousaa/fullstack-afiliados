@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { Transaction } from "../interfaces/Transaction";
 import { useAppContext } from "../hooks/useAppContext";
+import { formatPrice } from "../utils/formatPrice";
 
 const TransactionArea = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -75,7 +76,7 @@ const TransactionsTable: React.FC = () => {
   return (
     <TransactionArea>
       <PriceArea>
-        <PriceText>Total: <span>R$ {totalPrice}</span></PriceText>
+        <PriceText>Total: <span>{formatPrice(totalPrice)}</span></PriceText>
       </PriceArea>
       {transactions.length ? (
         <TransactionTable>
@@ -96,7 +97,7 @@ const TransactionsTable: React.FC = () => {
                 <TransactionCell>{t.id}</TransactionCell>
                 <TransactionCell>{(new Date(t.date)).toISOString()}</TransactionCell>
                 <TransactionCell>{t.product}</TransactionCell>
-                <TransactionCell>R$ {t.value}</TransactionCell>
+                <TransactionCell>{formatPrice(t.value)}</TransactionCell>
                 <TransactionCell>{t.seller}</TransactionCell>
                 <TransactionCell>{t.type.description}</TransactionCell>
                 <TransactionCell>{t.type.nature}</TransactionCell>
