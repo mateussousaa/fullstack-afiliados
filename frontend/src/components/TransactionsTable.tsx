@@ -48,7 +48,7 @@ const PriceText = styled.p`
   border-radius: 4px;
 `
 
-const TransactionsTable: React.FC = () => {
+const TransactionsTable = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([])
   const [totalPrice, setTotalPrice] = useState<number>(0)
   const { isLoading } = useAppContext();

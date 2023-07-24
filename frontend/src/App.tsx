@@ -26,7 +26,7 @@ const Logo = styled.span`
   font-weight: 500;
 `
 
-function App() {
+const App = () => {
   return (
     <Section>
       <Navbar>
