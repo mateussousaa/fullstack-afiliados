@@ -14,4 +14,6 @@ const uploadTransactions = async (path: string) => {
     })
 }
 
-export { uploadTransactions }
+const getTransactions = async () => prismaClient.transaction.findMany({ include: { type: true }});
+
+export { uploadTransactions, getTransactions }
