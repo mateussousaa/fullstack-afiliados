@@ -83,7 +83,7 @@ Para facilitar o deploy e colaboração com a equipe de DevOps, o projeto foi co
 
 <details>
 
-<summary><strong>API</strong></summary>
+<summary><strong>:brazil: Versão em português</strong></summary>
 
 ## Transações
 
@@ -111,6 +111,75 @@ Para facilitar o deploy e colaboração com a equipe de DevOps, o projeto foi co
 ```
 
 - Resposta
+
+```
+
+"message": [
+  {
+    "id": 1,
+    "date": "2022-01-15T22:20:30.000Z",
+    "product": "CURSO DE BEM-ESTAR",
+    "value": 12750,
+    "seller": "JOSE CARLOS",
+    "typeId": 1,
+    "type": {
+	  "id": 1,
+	  "description": "Venda produtor",
+	  "nature": "INPUT",
+	  "signal": "POSITIVE"
+    }
+  },
+  {
+    "id": 2,
+    "date": "2021-12-03T14:46:02.000Z",
+    "product": "DOMINANDO INVESTIMENTOS",
+    "value": 50000,
+    "seller": "MARIA CANDIDA",
+    "typeId": 1,
+    "type": {
+	  "id": 1,
+	  "description": "Venda produtor",
+	  "nature": "INPUT",
+	  "signal": "POSITIVE"
+    }
+  }
+]
+```
+
+</br>
+
+</details>
+
+<details>
+
+<summary><strong>:us: English version</strong></summary>
+
+## Transactions
+
+### Insert Transactions
+
+- Request (content-type: multipart/form-data)
+
+```http
+  POST /upload
+```
+
+- Response
+
+```
+{
+  "message": "Transactions were inserted"
+}
+```
+
+### List Transactions
+
+
+```http
+  GET /
+```
+
+- Response
 
 ```
 
