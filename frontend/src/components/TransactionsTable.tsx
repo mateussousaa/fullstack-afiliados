@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { Transaction } from "../interfaces/Transaction";
 import { useAppContext } from "../hooks/useAppContext";
 import { formatPrice } from "../utils/formatPrice";
+import fetch from 'cross-fetch';
 
 const TransactionArea = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

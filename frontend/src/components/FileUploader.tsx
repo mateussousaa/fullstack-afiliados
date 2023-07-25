@@ -115,6 +115,7 @@ const FileUploader = () => {
       <StyledInputFile
         type="file"
         id="fileInput"
+        data-testid="fileInput"
         ref={fileInputRef}
         onChange={handleFileChange}
       />
