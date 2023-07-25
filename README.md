@@ -72,7 +72,7 @@ Para facilitar o deploy e colaboração com a equipe de DevOps, o projeto foi co
 1. Certifique-se de ter o Docker Compose instalado em sua máquina.
 2. Clone o repositório: `git clone https://github.com/mateussousaa/fullstack-afiliados.git`
 3. Navegue até o diretório do projeto: `cd fullstack-afiliados`
-4. Execute o comando `docker-compose up -d`
+4. Execute o comando `docker-compose up -d --build`
 5. Execute o comando `docker exec -it affiliates_backend npm run init`
 6. O projeto estará sendo executado em `http://localhost:5173`
 
