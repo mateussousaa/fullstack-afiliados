@@ -2,6 +2,10 @@
 
 ![Fullstack Afiliados](./frontend/public/affiliatePrint.png)
 
+- Apresentação
+
+>  [Home | Loom - 25 July 2023 - Watch Video](https://www.loom.com/share/cdcf9f395dcf4b1ab9fe2874919632d8?sid=c7eb22fe-f810-4c44-a925-caa50071241e)
+
 Esta é a minha solução para o Desafio Fullstack Afiliados, um projeto full-stack que envolve a construção de uma interface web para fazer o upload de um arquivo de transações de produtos vendidos, normalizar os dados e armazená-los em um banco de dados relacional. O objetivo deste desafio é demonstrar minhas habilidades de desenvolvimento full-stack e minha capacidade de trabalhar com as tecnologias sugeridas.
 
 <br>
