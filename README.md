@@ -78,6 +78,21 @@ Para facilitar o deploy e colaboração com a equipe de DevOps, o projeto foi co
 
 <br>
 
+## Formato dos Arquivos
+---
+
+- Existe um arquivo chamado sales.txt com o formato correto na raíz do projeto
+
+| Campo    | Início | Fim | Tamanho | Descrição                      |
+| -------- | ------ | --- | ------- | ------------------------------ |
+| Tipo     | 1      | 1   | 1       | Tipo da transação              |
+| Data     | 2      | 26  | 25      | Data - ISO Date + GMT          |
+| Produto  | 27     | 56  | 30      | Descrição do produto           |
+| Valor    | 57     | 66  | 10      | Valor da transação em centavos |
+| Vendedor | 67     | 86  | 20      | Nome do vendedor               |
+
+<br>
+
 ## Documentação da API
 ---
 
