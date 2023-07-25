@@ -6,6 +6,7 @@ import { formatPrice } from "../utils/formatPrice";
 import fetch from 'cross-fetch';
 
 const TransactionArea = styled.div`
+  padding-bottom: 12px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   overflow-y: auto;
   text-align: center;
@@ -59,7 +60,9 @@ const TransactionsTable = () => {
     const fetchTransactions = async () => {
       const response = await fetch("http://localhost:3000/");
       const data = await response.json();
-      const { message: transactions } = data;
+
+      const transactions = data.message ? data.message : []
+
       setTransactions(transactions);
 
       const totalPrice = transactions.reduce((acc: number, t: Transaction) => {
