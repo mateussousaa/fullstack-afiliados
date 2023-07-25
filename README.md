@@ -78,15 +78,18 @@ Para facilitar o deploy e colaboração com a equipe de DevOps, o projeto foi co
 
 <br>
 
+## Documentação da API
+---
+
 <details>
 
-<summary><strong>Documentação da API</strong></summary>
+<summary><strong>API</strong></summary>
 
 ## Transações
 
 ### Insere as transações
 
-- Requisição - Content-Type: multipart/form-data
+- Requisição (content-type: multipart/form-data)
 
 ```http
   POST /upload
@@ -146,6 +149,8 @@ Para facilitar o deploy e colaboração com a equipe de DevOps, o projeto foi co
 </br>
 
 </details>
+
+</br>
 
 ## Testes Unitários e Testes E2E
 ---
