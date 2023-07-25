@@ -236,7 +236,7 @@ Para facilitar o deploy e colaboração com a equipe de DevOps, o projeto foi co
 
 </br>
 
-## Testes Unitários e Testes E2E
+## Testes Unitários
 ---
 
 Para garantir a qualidade e confiabilidade do código, foram implementados testes unitários. As seguintes bibliotecas e frameworks foram utilizados para os testes:
